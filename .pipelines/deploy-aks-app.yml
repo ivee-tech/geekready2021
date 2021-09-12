@@ -43,7 +43,7 @@ jobs:
           inputs:
             action: deploy
             manifests: |
-              $(Pipeline.Workspace)/src/rose/rose-app.yml
+              $(Pipeline.Workspace)/**/rose-app.yml
             imagePullSecrets: |
               $(imagePullSecret)
             containers: |
