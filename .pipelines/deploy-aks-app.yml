@@ -20,32 +20,36 @@ variables:
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
+stages:
+- stage: Build
+  displayName: Build and push stage
+  jobs:
+  - deployment: Deploy
+    displayName: Deploy
+    pool:
+      vmImage: $(vmImageName)
+    environment: 'iveetechgeekready2021.geekready2021'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: |
+              ls $(Build.SourcesDirectory)
+          - task: KubernetesManifest@0
+            displayName: Create imagePullSecret
+            inputs:
+              action: createSecret
+              secretName: $(imagePullSecret)
+              dockerRegistryEndpoint: $(dockerRegistryServiceConnection)
 
-jobs:
-- deployment: Deploy
-  displayName: Deploy
-  pool:
-    vmImage: $(vmImageName)
-  environment: 'iveetechgeekready2021.geekready2021'
-  strategy:
-    runOnce:
-      deploy:
-        steps:
-        - task: KubernetesManifest@0
-          displayName: Create imagePullSecret
-          inputs:
-            action: createSecret
-            secretName: $(imagePullSecret)
-            dockerRegistryEndpoint: $(dockerRegistryServiceConnection)
-
-        - task: KubernetesManifest@0
-          displayName: Deploy to Kubernetes cluster
-          inputs:
-            action: deploy
-            manifests: |
-              $(Build.SourcesDirectory)/src/rose/rose-app.yml
-            imagePullSecrets: |
-              $(imagePullSecret)
-            containers: |
-              $(containerRegistry)/$(imageRepository):$(tag)
+          - task: KubernetesManifest@0
+            displayName: Deploy to Kubernetes cluster
+            inputs:
+              action: deploy
+              manifests: |
+                $(Build.SourcesDirectory)/src/rose/rose-app.yml
+              imagePullSecrets: |
+                $(imagePullSecret)
+              containers: |
+                $(containerRegistry)/$(imageRepository):$(tag)
 
