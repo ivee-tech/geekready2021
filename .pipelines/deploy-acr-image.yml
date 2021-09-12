@@ -2,8 +2,12 @@
 # Build and push an image to Azure Container Registry
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
+parameters:
+  - name: tag
+    type: string
+    default: '0.0.1'
 trigger:
-- main
+- none
 
 resources:
 - repo: self
@@ -14,7 +18,7 @@ variables:
   imageRepository: 'geekready2021/hello-rose-world'
   containerRegistry: 'zzacr.azurecr.io'
   dockerfilePath: '**/Dockerfile'
-  tag: '0.0.1' #'$(Build.BuildId)'
+  tag: ${{ parameters.tag }} '0.0.1' #'$(Build.BuildId)'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
