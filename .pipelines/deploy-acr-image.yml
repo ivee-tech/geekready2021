@@ -18,7 +18,7 @@ variables:
   imageRepository: 'geekready2021/hello-rose-world'
   containerRegistry: 'zzacr.azurecr.io'
   dockerfilePath: '**/Dockerfile'
-  tag: ${{ parameters.tag }} '0.0.1' #'$(Build.BuildId)'
+  tag: ${{ parameters.tag }} # '$(Build.BuildId)'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
