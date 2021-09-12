@@ -15,7 +15,7 @@ echo $adminGroupObjectIDs
 resourceGroup='zz-dev'
 location='AustraliaEast'
 # use existing or generate SSH keys
-SSH_KEY=$(cat ./id_rsa_aks.pub) 
+SSH_KEY=$(cat $HOME/.ssh/id_rsa_aks.pub) 
 SSH_KEY="${SSH_KEY}\n"
 ACR_ROLE=$(az role definition list --name 'AcrPull' | jq -r .[].id)
 
