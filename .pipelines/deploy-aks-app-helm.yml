@@ -19,5 +19,6 @@ steps:
     namespace: 'geekready2021'
     command: 'install'
     chartType: 'Name'
-    chartName: 'rose-app'
-    valueFile: 'values.yaml'
+    chartName: './src/rose/rose-app-chart'
+    valueFile: './src/rose/rose-app-chart/values.yaml'
+    waitForExecution: false
