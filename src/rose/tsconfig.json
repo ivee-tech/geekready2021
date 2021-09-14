@@ -20,7 +20,8 @@
       "node_modules/@types", "custom_typings"
     ],
     "types": [
-      "webpack-env"
+      "webpack-env",
+      "@types/jest"
     ],
     "paths": {
       "@/*": [
@@ -42,6 +43,8 @@
     "tests/**/*.tsx"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "test.ts",
+    "**/*.spec.ts"
   ]
 }

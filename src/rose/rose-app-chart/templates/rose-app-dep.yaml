@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "rose-app.fullname" .}}-dep
+spec:
+  replicas: {{ .Values.roseApp.replicaCount }}
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5 
+  selector:
+    matchLabels:
+      app: {{ .Values.roseApp.name }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.roseApp.name }}
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+      - name: {{ .Values.roseApp.name }}
+        image:  "{{ .Values.roseApp.image }}:{{ .Values.roseApp.tag }}"
+        ports:
+        - containerPort: {{ .Values.roseApp.ports.containerPort }}
+        resources:
+          requests:
+            cpu: 250m
+          limits:
+            cpu: 500m

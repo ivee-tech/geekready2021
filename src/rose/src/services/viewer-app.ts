@@ -61,7 +61,7 @@ export class ViewerApp {
         this.w.cfg.canvasId = 'main-div';
         this.w.cfg.useAxis = false;
         this.w.cfg.useOrbit = true;
-        this.w.cfg.useTrackball = false;
+        this.w.cfg.useTrackball = true;
         this.w.cfg.useStats = false;
         this.w.cfg.statsId = "statsDiv";
         this.w.cfg.useDatGui = false;

@@ -1,0 +1,8 @@
+roseApp:
+  name: rose-app
+  replicaCount: 2
+  image: zzacr.azurecr.io/geekready2021/hello-rose-world
+  tag: 0.0.1
+  ports:
+    containerPort: 2999
+
