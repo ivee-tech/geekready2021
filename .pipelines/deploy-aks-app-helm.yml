@@ -19,5 +19,5 @@ steps:
     namespace: 'geekready2021'
     command: 'install'
     chartType: 'Name'
-    chartName: 'rose-app-chart'
-    valueFile: 'values.yaml'
+    chartName: '$(Pipeline.Workspace)/src/rose/rose-app-chart'
+    valueFile: '$(Pipeline.Workspace)/src/rose/rose-app-chart/values.yaml'
