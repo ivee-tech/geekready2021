@@ -23,3 +23,5 @@ steps:
     valueFile: './src/rose/rose-app-chart/values.yaml'
     waitForExecution: false
     install: true
+    useClusterAdmin: true
+
