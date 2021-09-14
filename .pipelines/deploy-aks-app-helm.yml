@@ -13,7 +13,7 @@ steps:
 - task: HelmDeploy@0
   inputs:
     connectionType: 'Azure Resource Manager'
-    azureSubscription: 'Visual Studio Enterprise Subscription(62755989-1bb3-4d7b-8131-13e79f4bdc5f)'
+    azureSubscriptionEndpoint: 'Visual Studio Enterprise Subscription(62755989-1bb3-4d7b-8131-13e79f4bdc5f)'
     azureResourceGroup: 'zz-dev'
     kubernetesCluster: 'zz-dev-aks'
     namespace: 'geekready2021'
@@ -22,4 +22,4 @@ steps:
     chartName: './src/rose/rose-app-chart/'
     valueFile: './src/rose/rose-app-chart/values.yaml'
     waitForExecution: false
-    arguments: '--install'
+    install: true
