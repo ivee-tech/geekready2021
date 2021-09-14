@@ -21,3 +21,4 @@ steps:
     chartType: 'Name'
     chartName: './src/rose/rose-app-chart'
     valueFile: './src/rose/rose-app-chart/values.yaml'
+    waitForExecution: false
