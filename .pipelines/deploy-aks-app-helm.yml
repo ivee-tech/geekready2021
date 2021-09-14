@@ -19,7 +19,7 @@ steps:
     namespace: 'geekready2021'
     command: 'upgrade'
     chartType: 'FilePath'
-    chartName: './src/rose/rose-app-chart/'
+    chartPath: './src/rose/rose-app-chart/'
     valueFile: './src/rose/rose-app-chart/values.yaml'
     waitForExecution: false
     install: true
