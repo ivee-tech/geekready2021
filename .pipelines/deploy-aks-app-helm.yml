@@ -17,8 +17,9 @@ steps:
     azureResourceGroup: 'zz-dev'
     kubernetesCluster: 'zz-dev-aks'
     namespace: 'geekready2021'
-    command: 'install'
-    chartType: 'Name'
-    chartName: './src/rose/rose-app-chart'
+    command: 'upgrade'
+    chartType: 'FilePath'
+    chartName: './src/rose/rose-app-chart/'
     valueFile: './src/rose/rose-app-chart/values.yaml'
     waitForExecution: false
+    arguments: '--install'
