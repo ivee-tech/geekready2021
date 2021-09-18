@@ -20,7 +20,7 @@ stages:
       displayName: Deploy
       pool:
         vmImage: $(vmImageName)
-      environment: '$(environment)'
+      environment: "$(environment)"
       strategy:
         runOnce:
           deploy:
