@@ -6,7 +6,7 @@ spec:
   selector:
     matchLabels:
       app: "__APP_NAME__"
-  replicas: "__REPLICAS__"
+  replicas: __REPLICAS__
   template:
     metadata:
       labels:
