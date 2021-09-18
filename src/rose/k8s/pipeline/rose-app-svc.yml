@@ -6,7 +6,7 @@ metadata:
     run: "__APP_NAME__-svc"
 spec:
   ports:
-  - port: "__APP_PORT__"
+  - port: __APP_PORT__
     protocol: TCP
   selector:
     app: "__APP_NAME__"
