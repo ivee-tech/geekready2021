@@ -24,7 +24,7 @@ variables:
 stages:
   - stage: deploy-dev
     template: deploy-aks-app.stage.yml
-      parameters:
+    parameters:
       env: dev
       varGroup: aks-deploy-dev
       imageTag: ${{ parameters.imageTag }}
