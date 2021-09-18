@@ -11,8 +11,8 @@ parameters:
 
 
 stages:
-  - stage: 'deploy-${{ parameters.env }}'
-    displayName: Deploy in ${{ parameters.env }} env
+  - stage: 'deploy_${{ parameters.env }}'
+    displayName: 'Deploy in ${{ parameters.env }} env'
     variables: 
     - group: ${{ parameters.varGroup }}
     jobs:
