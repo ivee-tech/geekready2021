@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: "__APP_NAME__"
-          image: "__REGFISTRY__/__IMAGE__:__IMAGE_TAG__"
+          image: "__REGISTRY__/__IMAGE__:__IMAGE_TAG__"
           ports:
             - containerPort: "__APP_PORT__"
               protocol: TCP

@@ -20,6 +20,11 @@ steps:
     secretName: '${{ parameters.imagePullSecret }}'
     dockerRegistryEndpoint: '${{ parameters.dockerRegistryServiceConnection }}'
 
+- task: Tokenizer@0
+  inputs:
+    sourceFilesPattern: '$(Build.SourcesDirectory)/src/rose/k8s/pipeline/rose-app-*.yml'
+    tokenDataSource: 'environmentVariables'
+
 - task: KubernetesManifest@0
   displayName: Deploy to Kubernetes cluster
   inputs:
