@@ -1,7 +1,7 @@
 parameters:
 - name: imageTag
   type: string
-  deafult: '0.0.1'
+  default: '0.0.1'
 
 trigger:
 - none
@@ -22,16 +22,18 @@ variables:
   # vmImageName: 'ubuntu-latest'
 
 stages:
-  template: deploy-aks-app.stage.yml
-  parameters:
-    env: dev
-    varGroup: aks-deploy-dev
-    imageTag: ${{ parameters.imageTag }}
-  template: deploy-aks-app.stage.yml
-  parameters:
-    env: test
-    varGroup: aks-deploy-test
-    imageTag: ${{ parameters.imageTag }}
+  - stage: deploy-dev
+    template: deploy-aks-app.stage.yml
+      parameters:
+      env: dev
+      varGroup: aks-deploy-dev
+      imageTag: ${{ parameters.imageTag }}
+  - stage: deploy-test
+    template: deploy-aks-app.stage.yml
+    parameters:
+      env: test
+      varGroup: aks-deploy-test
+      imageTag: ${{ parameters.imageTag }}
   
 # - stage: deploy-dev
 #   displayName: Deploy in Dev env
