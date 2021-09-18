@@ -6,7 +6,7 @@ opts.setAcceptInsecureCerts(true);
 // opts.setBrowserVersion('93');
 // opts.setPlatform('Windows 10');
 console.log(process.env.TEST_ENV);
-const $path = `../public/assets/config/test-config${process.env.TEST_ENV === 'CI' ? '' : '.local'}.json`;
+const $path = `../../public/assets/config/test-config${process.env.TEST_ENV === 'CI' ? '' : '.local'}.json`;
 let cfg = require($path);
 console.log(cfg);
 

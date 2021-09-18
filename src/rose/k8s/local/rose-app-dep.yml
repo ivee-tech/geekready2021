@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: rose-app
+  name: rose-app-dep
 spec:
   selector:
     matchLabels:
@@ -19,17 +19,8 @@ spec:
             - containerPort: 2999
               protocol: TCP
           tty: true
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: rose-app-svc
-  labels:
-    run: rose-app-svc
-spec:
-  ports:
-  - port: 2999
-    protocol: TCP
-  selector:
-    app: rose-app
-  type: LoadBalancer
+          resources:
+            limits:
+              cpu: 500m
+            requests:
+              cpu: 200m

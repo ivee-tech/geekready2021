@@ -3,27 +3,24 @@
 	"contentVersion": "1.0.0.0",
 	"parameters": {
 		"k8sVersion": {
-			"value": "1.19.7"
+			"value": "1.19.11"
 		},
 		"adminGroupObjectIDs": {
 			"value": [
-				"3d652653-d3fa-4855-b8fe-468e2be3bb50"
+				"41465f04-7712-4e6c-92e3-8c1666c89b39"
 			]
 		},
 		"prefix" : {
-			"value": "geba"
+			"value": "zz"
 		},
 		"suffix" : {
-			"value": "prd"
+			"value": "test"
 		},
 		"aksNodes" : {
 			"value": 2
 		},
 		"vnetPrefix": {
-			"value": "10.20.0.0/16"
-		},
-		"subnetPrefix": {
-			"value": "10.20.0.0/24"
+			"value": "10.10.0.0/16"
 		},
 		"vnetName": {
 			"value": ""
@@ -33,13 +30,19 @@
 				{
 					"name": "snet-aks",
 					"properties": {
-						"addressPrefix": "10.20.0.0/24"
+						"addressPrefix": "10.10.0.0/24"
 					}
 				},
 				{
 					"name": "snet-ilb",
 					"properties": {
-						"addressPrefix": "10.20.1.0/24"
+						"addressPrefix": "10.10.1.0/24"
+					}
+				},
+				{
+					"name": "user-snet-aks",
+					"properties": {
+						"addressPrefix": "10.10.2.0/24"
 					}
 				}
 			]
@@ -49,6 +52,9 @@
 		},
 		"aksSkuTier": {
 			"value": "Paid"
+		},
+		"aksUserNodes" : {
+			"value": 4
 		}
 
 	}

@@ -15,6 +15,14 @@ $ns='geekready2021'
 docker tag $imageName:$tag $loginServer/$ns/$imageName:$destTag
 docker push $loginServer/$ns/$imageName:$destTag
 
+# run trivy against the deployed image
+docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v $HOME/Library/Caches:/root/.cache/ zzacr.azurecr.io/aquasec/trivy --exit-code 0 --severity MEDIUM,HIGH --ignore-unfixed $containerRegistry/$imageRepository:$tag
+docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v $HOME/Library/Caches:/root/.cache/ zzacr.azurecr.io/aquasec/trivy --exit-code 1 --severity CRITICAL --ignore-unfixed $containerRegistry/$imageRepository:$tag
+
+# deploy AKS cluster
+/bin/bash deploy.sh dev
+/bin/bash deploy.sh test
+
 # attach ACR instance to AKS
 resourceGroupName='zz-dev'
 aksName='zz-dev-aks'
@@ -43,3 +51,6 @@ kubectl run -i --tty load-generator --rm --image=busybox --restart=Never --names
 # using external, curl
 kubectl run -i --tty load-generator --rm --image=busybox --restart=Never --namespace $ns \
     -- /bin/sh -c "while sleep 0.01; do curl -L -v http://20.92.184.206:2999/  -A \"Mozilla/5.0 (compatible;  MSIE 7.01; Windows NT 5.0)\"; done"
+
+
+# HPA demo

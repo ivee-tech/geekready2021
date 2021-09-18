@@ -7,5 +7,6 @@ metadata:
 spec:
   ports:
   - port: 2999
+    protocol: TCP
   selector:
-    run: rose-app
+    app: rose-app
