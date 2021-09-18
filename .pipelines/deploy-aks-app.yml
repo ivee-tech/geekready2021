@@ -38,6 +38,10 @@ stages:
             steps:
             - template: deploy-aks-app.steps.yml
               parameters:
+                dockerRegistryServiceConnection: '$(dockerRegistryServiceConnection)'
+                imagePullSecret: '$(imagePullSecret)'
+                containerRegistry: '$(containerRegistry)'
+                imageRepository: '$(imageRepository)'
                 imageTag: ${{ parameters.imageTag }}
   - stage: deploy_test
     displayName: 'Deploy in test env'
@@ -55,6 +59,10 @@ stages:
             steps:
             - template: deploy-aks-app.steps.yml
               parameters:
+                dockerRegistryServiceConnection: '$(dockerRegistryServiceConnection)'
+                imagePullSecret: '$(imagePullSecret)'
+                containerRegistry: '$(containerRegistry)'
+                imageRepository: '$(imageRepository)'
                 imageTag: ${{ parameters.imageTag }}
   
 # - stage: deploy-dev
