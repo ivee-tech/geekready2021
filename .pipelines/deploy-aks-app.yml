@@ -45,6 +45,7 @@ stages:
                 imageTag: ${{ parameters.imageTag }}
   - stage: deploy_test
     displayName: 'Deploy in test env'
+    dependsOn: deploy_dev
     variables: 
     - group: aks-deploy-test
     jobs:
