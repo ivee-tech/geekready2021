@@ -11,7 +11,7 @@ parameters:
 
 
 stages:
-  - stage: deploy-${{ parameters.env }}
+  - stage: 'deploy-${{ parameters.env }}'
     displayName: Deploy in ${{ parameters.env }} env
     variables: 
     - group: ${{ parameters.varGroup }}
@@ -20,7 +20,7 @@ stages:
       displayName: Deploy
       pool:
         vmImage: $(vmImageName)
-      environment: $(environment)
+      environment: '$(environment)'
       strategy:
         runOnce:
           deploy:
