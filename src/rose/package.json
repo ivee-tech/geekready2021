@@ -10,7 +10,7 @@
     "unit-test": "jest --testPathPattern=tests/unit/*",
     "func-test": "jest --testPathPattern=tests/func/*",
     "unit-test-ci": "export TEST_ENV=CI && jest --testPathPattern=tests/unit/* --ci --watchAll=false",
-    "func-test-ci": "export TEST_ENV=CI && jest --ci --watchAll=false"
+    "func-test-ci": "export TEST_ENV=CI && jest --testPathPattern=tests/func/* --ci --watchAll=false"
   },
   "dependencies": {
     "@azure/msal-browser": "^2.2.0",

@@ -13,6 +13,9 @@ RUN npm install
 # add app
 COPY . ./
 
+# run unit tests
+RUN npm run unit-test-ci
+
 EXPOSE 2999
 
 # start app

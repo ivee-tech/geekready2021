@@ -43,14 +43,50 @@ kubectl apply -f rose-app.yml -n $ns
 # increase load
 # internal call - timeout
 kubectl run -i --tty load-generator --rm --image=busybox --restart=Never --namespace $ns \
-    -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://rose-app-int; done"
+    -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://rose-app-int:2999; done"
 # using external
 kubectl run -i --tty load-generator --rm --image=busybox --restart=Never --namespace $ns \
-    -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://20.92.184.206:2999/; done"
+    -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://20.53.196.76:2999/; done"
 
 # using external, curl
 kubectl run -i --tty load-generator --rm --image=busybox --restart=Never --namespace $ns \
-    -- /bin/sh -c "while sleep 0.01; do curl -L -v http://20.92.184.206:2999/  -A \"Mozilla/5.0 (compatible;  MSIE 7.01; Windows NT 5.0)\"; done"
+    -- /bin/sh -c "while sleep 0.01; do curl -L -v http://20.53.196.76:2999/  -A \"Mozilla/5.0 (compatible;  MSIE 7.01; Windows NT 5.0)\"; done"
+
+# testing namespace
+tns='geekready2021-testing'
+kubectl create namespace $tns
+
+# moon for UI / func testing
+git clone https://github.com/aerokube/moon-deploy.git
+cd moon-deploy
+
+kubectl apply -f moon.yaml
+
+kubectl get svc -n moon
+
+# rose app func test job
+svr='zzacr.azurecr.io'
+ns='geekready2021'
+img='rose-app-func-test'
+tag='latest'
+docker tag $img:$tag $svr/$ns/$img:$tag
+docker push $svr/$ns/$img:$tag
+
+tns='geekready2021'
+kubectl apply -f rose-app-func-test-job.yml -n $tns
+
+# load testing
+svr='zzacr.azurecr.io'
+ns='geekready2021'
+img='rose-app-load-test'
+tag='latest'
+docker tag $img:$tag $svr/$ns/$img:$tag
+docker push $svr/$ns/$img:$tag
+
+tns='geekready2021'
+kubectl apply -f rose-app-load-test-job.yml -n $tns
 
 
 # HPA demo
+
+

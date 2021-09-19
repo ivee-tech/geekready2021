@@ -1,0 +1,6 @@
+{
+    "remoteServerUrl": "http://20.40.179.23:4444/wd/hub",
+    "appUrl": "http://20.53.196.76:2999",
+    "_remoteServerUrl": "http://localhost:4444",
+    "_appUrl": "http://172.17.0.1:2999" 
+}

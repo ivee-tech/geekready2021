@@ -1,12 +1,12 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: rose-app-load-test-005
+  name: rose-app-load-test-001
 spec:
   template:
     metadata:
       labels:
-        app: rose-app
+        app: rose-app-load-test
     spec:
       containers:
         - name: rose-app-load-test
