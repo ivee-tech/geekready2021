@@ -7,6 +7,11 @@ az acr login -n $acrName
 
 docker images
 
+# build and test local image
+docker build -t hello-rose-world:0.0.1 .
+docker run -it -p 2999:2999 hello-rose-world:0.0.1
+# navigate to localhost:2999
+
 # push local image manually
 imageName='hello-rose-world'
 tag='0.0.1'
@@ -72,8 +77,10 @@ tag='latest'
 docker tag $img:$tag $svr/$ns/$img:$tag
 docker push $svr/$ns/$img:$tag
 
-tns='geekready2021'
+tns='geekready2021-testing'
 kubectl apply -f rose-app-func-test-job.yml -n $tns
+
+docker run -it zzacr.azurecr.io/geekready2021/rose-app-func-test:latest
 
 # load testing
 svr='zzacr.azurecr.io'
@@ -83,10 +90,11 @@ tag='latest'
 docker tag $img:$tag $svr/$ns/$img:$tag
 docker push $svr/$ns/$img:$tag
 
-tns='geekready2021'
+tns='geekready2021-testing'
 kubectl apply -f rose-app-load-test-job.yml -n $tns
 
 
 # HPA demo
-
+ns='geekready2021'
+kubectl get hpa -n $ns
 
