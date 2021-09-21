@@ -5,6 +5,8 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+- script: |
+    az bicep build -f src/infra/aks/main.bicep
 - task: AzureResourceManagerTemplateDeployment@3
   inputs:
     deploymentScope: 'Resource Group'
@@ -14,6 +16,6 @@ steps:
     resourceGroupName: 'zz-test'
     location: 'Australia Central'
     templateLocation: 'Linked artifact'
-    csmFile: 'src/infra/aks/main.bicep'
+    csmFile: 'src/infra/aks/main.json'
     csmParametersFile: 'src/infra/aks/parameters_test.json'
     deploymentMode: 'Incremental'
