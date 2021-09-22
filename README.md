@@ -1,2 +1,2 @@
 # geekready2021
-End-to-end Azure Kubernetes Service / K8S deployments
+End-to-end AKS / K8S deployments
